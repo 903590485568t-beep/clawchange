@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000000;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated Background Pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, #1a0000 25%, transparent 25%), 
+    linear-gradient(-45deg, #1a0000 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #1a0000 75%), 
+    linear-gradient(-45deg, transparent 75%, #1a0000 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  z-index: -2;
+  animation: bg-scroll 20s linear infinite;
+  opacity: 0.5;
+}
+
+/* Red Vignette/Glow */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, #330000 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes bg-scroll {
+  0% { background-position: 0 0, 0 10px, 10px -10px, -10px 0px; }
+  100% { background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px; }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-seamless {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+  /* We need the width to be large enough to hold all copies */
+  width: max-content; 
+}
+
+/* Floating Particles Animation */
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+@keyframes float-down {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.particle {
+  position: fixed;
+  bottom: -10px;
+  background: #ff0000;
+  width: 4px;
+  height: 4px;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 0 4px #ff0000;
+}
+
+/* Custom scrollbar for pixel feel */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-left: 2px solid #330000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border: 4px solid #000000;
+  box-shadow: inset -2px -2px 0px rgba(0,0,0,0.5);
+}
+
+.pixel-border {
+  box-shadow: 
+    -4px 0 0 0 #000,
+    4px 0 0 0 #000,
+    0 -4px 0 0 #000,
+    0 4px 0 0 #000;
+  margin: 4px;
+}
+
+.pixel-card {
+  background-color: #000000;
+  border: 4px solid #ff0000;
+  position: relative;
+  box-shadow: 
+    4px 4px 0px 0px #330000;
+}
+
+.pixel-input {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #1a0000;
+  border: 4px solid #330000;
+  color: #ff0000;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.pixel-input:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.pixel-btn {
+  background-color: #ff0000;
+  color: black;
+  border: 4px solid #000;
+  padding: 12px 24px;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 
+    inset -4px -4px 0px 0px rgba(0,0,0,0.3),
+    4px 4px 0px 0px #000;
+  transition: all 0.1s;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.pixel-btn:hover {
+  background-color: #ff3333;
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    inset -4px -4px 0px 0px rgba(0,0,0,0.3),
+    6px 6px 0px 0px #000;
+}
+
+.pixel-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.pixel-btn-secondary {
+  background-color: #330000;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  box-shadow: 2px 2px 0px 0px #000;
+}
+
+.pixel-btn-secondary:hover {
+  background-color: #550000;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  25% { opacity: 0.9; }
+  75% { opacity: 0.95; }
+}
+
+.animate-flicker {
+  animation: flicker 0.2s infinite;
+}
+
+.text-shadow-red {
+  text-shadow: 4px 4px 0px #000000;
+}
